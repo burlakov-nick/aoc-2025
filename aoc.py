@@ -71,6 +71,13 @@ def run_input(solve: Callable):
     print("")
 
 
+def run(solve: Callable, *, skip_sample: bool = False, skip_input: bool = False):
+    if not skip_sample:
+        run_sample(solve)
+    if not skip_input:
+        run_input(solve)
+
+
 def measure(name: str, f: Callable) -> Any:
     start = time.time()
     result = f()
