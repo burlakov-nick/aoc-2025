@@ -1,0 +1,5 @@
+networkx==3.6
+ruff==0.14.7
+sortedcollections==2.1.0
+sortedcontainers==2.4.0
+typing-extensions==4.15.0
