@@ -1,7 +1,12 @@
 from collections import defaultdict, deque
+from collections.abc import Iterable, Callable
 from itertools import islice
 
-from typing_extensions import Callable, Iterable
+
+def sign(x: int) -> int:
+    if x == 0:
+        return 0
+    return -1 if x < 0 else 1
 
 
 def range_2d(n: int, m: int) -> Iterable[tuple[int, int]]:

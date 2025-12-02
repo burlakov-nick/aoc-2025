@@ -1,8 +1,7 @@
 import re
 import time
-from typing import Callable
-
-from typing_extensions import Any
+from collections.abc import Callable
+from typing import Any
 
 import helpers
 from vec import V

@@ -1,0 +1,24 @@
+[tool.ruff]
+target-version = "py313"
+exclude = [
+    "resources",
+    ".git",
+    "__pycache__",
+    "old",
+    "build",
+    "dist",
+    "env/",
+]
+line-length = 120
+lint.ignore = ["C901", "COM812", "E203", "UP046", "UP047", "F403", "F405"]
+lint.select = [
+    "C9",
+    "E",
+    "F",
+    "W",
+    "I",
+    "UP",
+    "G",
+    "Q",
+]
+

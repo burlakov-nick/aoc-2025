@@ -1,8 +1,9 @@
-import aoc
+from aoc import *
+from helpers import *
 
 
-def solve(r: aoc.Reader):
+def solve(r: Reader):
     print(r.read_lines())
 
 
-aoc.run(solve)
+run(solve)
