@@ -6,7 +6,7 @@ def max_jolts(bank, left):
         return ""
     mx = max(bank[: len(bank) - left + 1])
     pos = bank.find(mx)
-    return bank[pos] + max_jolts(bank[pos + 1 :], left - 1)
+    return mx + max_jolts(bank[pos + 1 :], left - 1)
 
 
 def solve(r: Reader):
