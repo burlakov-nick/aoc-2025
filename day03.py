@@ -2,7 +2,7 @@ from aoc import *
 
 
 def max_jolts(bank, left):
-    if not bank or left == 0:
+    if not bank or not left:
         return ""
     mx = max(bank[: len(bank) - left + 1])
     pos = bank.find(mx)
