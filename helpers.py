@@ -1,6 +1,8 @@
 from collections import defaultdict, deque
-from collections.abc import Iterable, Callable
+from collections.abc import Callable, Iterable
 from itertools import islice
+
+MISSING = object()
 
 
 def sign(x: int) -> int:
@@ -30,7 +32,11 @@ def transpose[T](list2: list[list[T]]) -> list[list[T]]:
     return list(map(list, zip(*list2)))
 
 
-def count(xs, target) -> int:
+def count[T](xs: Iterable[T], target: Callable[[T], bool] | T = MISSING) -> int:
+    if target is MISSING:
+        return sum(1 for x in xs)
+    if isinstance(target, Callable):
+        return sum(1 for x in xs if target(x))
     return sum(1 for x in xs if x == target)
 
 
