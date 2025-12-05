@@ -10,7 +10,7 @@ exclude = [
     "env/",
 ]
 line-length = 120
-lint.ignore = ["C901", "COM812", "E203", "UP046", "UP047", "F403", "F405"]
+lint.ignore = ["C901", "COM812", "E203", "UP046", "UP047", "F403", "F405", "E741"]
 lint.select = [
     "C9",
     "E",
