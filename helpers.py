@@ -84,29 +84,32 @@ def get_submasks(mask: int) -> Iterable:
 
 class DSU:
     def __init__(self, xs):
-        self.comps = []
-        self.which = {}
-        for i, x in enumerate(xs):
-            comp = {x}
-            self.comps.append(comp)
-            self.which[x] = i
+        self.sets = [[x] for x in xs]
+        self.alive_set_ids = set(range(len(self.sets)))
+        self.which = {x: i for i, x in enumerate(xs)}
 
-    def get_comp_id(self, x):
+    def get_set_id(self, x):
         return self.which[x]
 
-    def is_same_comp(self, x, y):
+    def same_set(self, x, y):
         return self.which[x] == self.which[y]
 
     def merge(self, x, y) -> bool:
-        if self.is_same_comp(x, y):
+        if self.same_set(x, y):
             return False
 
-        left, right = self.which[x], self.which[y]
-        self.comps[left] |= self.comps[right]
-        for p in self.comps[right]:
-            self.which[p] = left
-        self.comps[right] = set()
+        left_id, right_id = self.which[x], self.which[y]
+        if len(self.sets[left_id]) < len(self.sets[right_id]):
+            left_id, right_id = right_id, left_id
+
+        self.sets[left_id].extend(self.sets[right_id])
+        for p in self.sets[right_id]:
+            self.which[p] = left_id
+
+        self.sets[right_id] = []
+        self.alive_set_ids.remove(right_id)
+
         return True
 
     def __iter__(self):
-        return iter(x for x in self.comps if x)
+        return iter(self.sets[id] for id in self.alive_set_ids)
