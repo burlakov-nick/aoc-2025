@@ -98,16 +98,16 @@ class DSU:
         if self.same_set(x, y):
             return False
 
-        left_id, right_id = self.which[x], self.which[y]
-        if len(self.sets[left_id]) < len(self.sets[right_id]):
-            left_id, right_id = right_id, left_id
+        left, right = self.which[x], self.which[y]
+        if len(self.sets[left]) < len(self.sets[right]):
+            left, right = right, left
 
-        self.sets[left_id].extend(self.sets[right_id])
-        for p in self.sets[right_id]:
-            self.which[p] = left_id
+        self.sets[left].extend(self.sets[right])
+        for p in self.sets[right]:
+            self.which[p] = left
 
-        self.sets[right_id] = []
-        self.alive_set_ids.remove(right_id)
+        self.sets[right] = []
+        self.alive_set_ids.remove(right)
 
         return True
 
