@@ -1,4 +1,6 @@
-from typing_extensions import Iterable
+from collections.abc import Iterable
+
+from helpers import sign
 
 
 class V:
@@ -37,10 +39,10 @@ class V:
     def __bool__(self) -> bool:
         return self.x != 0 and self.y != 0
 
-    def dist_to(self, other) -> int:
+    def mdist_to(self, other) -> int:
         return abs(self.x - other.x) + abs(self.y - other.y)
 
-    def dist(self) -> int:
+    def mdist(self) -> int:
         return abs(self.x) + abs(self.y)
 
     def neighbors_8(self) -> Iterable["V"]:
@@ -105,8 +107,11 @@ class V3:
     def __repr__(self) -> str:
         return (self.x, self.y, self.z).__repr__()
 
-    def dist_to(self, other: "V3") -> int:
+    def mdist_to(self, other: "V3") -> int:
         return abs(self.x - other.x) + abs(self.y - other.y) + abs(self.z - other.z)
+
+    def dist_to(self, other: "V3") -> int:
+        return abs(self.x - other.x) ** 2 + abs(self.y - other.y) ** 2 + abs(self.z - other.z) ** 2
 
     def neighbors_6(self) -> Iterable["V3"]:
         for d in [

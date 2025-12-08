@@ -80,3 +80,33 @@ def get_submasks(mask: int) -> Iterable:
         if x == 0:
             break
         x = (x - 1) & mask
+
+
+class DSU:
+    def __init__(self, xs):
+        self.comps = []
+        self.which = {}
+        for i, x in enumerate(xs):
+            comp = {x}
+            self.comps.append(comp)
+            self.which[x] = i
+
+    def get_comp_id(self, x):
+        return self.which[x]
+
+    def is_same_comp(self, x, y):
+        return self.which[x] == self.which[y]
+
+    def merge(self, x, y) -> bool:
+        if self.is_same_comp(x, y):
+            return False
+
+        left, right = self.which[x], self.which[y]
+        self.comps[left] |= self.comps[right]
+        for p in self.comps[right]:
+            self.which[p] = left
+        self.comps[right] = set()
+        return True
+
+    def __iter__(self):
+        return iter(x for x in self.comps if x)

@@ -8,8 +8,9 @@ from vec import V
 
 
 class Reader:
-    def __init__(self, f):
+    def __init__(self, f, extra):
         self.f = f
+        self.extra = extra
 
     def read_lines(self) -> list[str]:
         return self.f.read().splitlines()
@@ -56,25 +57,25 @@ class Reader:
         return blocks
 
 
-def run_sample(solve: Callable):
+def run_sample(solve: Callable, extra=None):
     print("SAMPLE:")
     with open("resources/sample.txt") as f:
-        solve(Reader(f))
+        solve(Reader(f, extra))
     print("")
 
 
-def run_input(solve: Callable):
+def run_input(solve: Callable, extra=None):
     print("INPUT:")
     with open("resources/input.txt") as f:
-        solve(Reader(f))
+        solve(Reader(f, extra))
     print("")
 
 
-def run(solve: Callable, *, skip_sample: bool = False, skip_input: bool = False):
+def run(solve: Callable, *, skip_sample: bool = False, skip_input: bool = False, sample=None, input=None):
     if not skip_sample:
-        run_sample(solve)
+        run_sample(solve, sample)
     if not skip_input:
-        run_input(solve)
+        run_input(solve, input)
 
 
 def measure(name: str, f: Callable) -> Any:
