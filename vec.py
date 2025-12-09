@@ -80,6 +80,24 @@ class V:
         return V(-self.y, self.x)
 
 
+class Rec:
+    __slots__ = ("p1", "p2", "lx", "rx", "ly", "ry")
+
+    def __init__(self, p1: V, p2: V):
+        self.p1 = p1
+        self.p2 = p2
+        self.lx = min(p1.x, p2.x)
+        self.rx = max(p1.x, p2.x)
+        self.ly = min(p1.y, p2.y)
+        self.ry = max(p1.y, p2.y)
+
+    def grid_area(self) -> int:
+        return (abs(self.rx - self.lx) + 1) * (abs(self.ry - self.ly) + 1)
+
+    def strict_inside(self, t: V):
+        return self.lx < t.x < self.rx and self.ly < t.y < self.ry
+
+
 DIRECTIONS_4 = [V(0, -1), V(0, 1), V(-1, 0), V(1, 0)]
 
 
