@@ -3,3 +3,4 @@ ruff==0.14.7
 sortedcollections==2.1.0
 sortedcontainers==2.4.0
 matplotlib==3.10.7
+z3-solver==4.15.4.0
